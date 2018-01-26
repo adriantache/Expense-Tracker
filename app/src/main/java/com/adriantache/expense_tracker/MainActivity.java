@@ -20,17 +20,20 @@ import com.razerdp.widget.animatedpieview.data.SimplePieInfo;
 public class MainActivity extends AppCompatActivity {
 
     AnimatedPieView mAnimatedPieView;
+    AnimatedPieView gAnimatedPieView;
     FloatingActionButton floatingActionButton;
 
     //declare all variables
     int savingsTotal;
     int needsTotal;
     int wantsTotal;
+    int savingsGoal;
+    //todo default savingsGoalDefined to false after testing:
+    boolean savingsGoalDefined = true;
     boolean fabClicked = false;
 
     //todo remove TAG after testing
     String TAG = "MainActivity";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +42,9 @@ public class MainActivity extends AppCompatActivity {
 
         //todo get values from CSV
 
-        //launch the pie chart
+        //launch the pie charts
         setPie();
+        if (savingsGoalDefined) setGoalPie();
 
         //onClickListener for the FAB
         floatingActionButton = findViewById(R.id.floatingActionButton);
@@ -120,10 +124,74 @@ public class MainActivity extends AppCompatActivity {
         mAnimatedPieView.start();
     }
 
+    //config and start the goal pie chart
+    private void setGoalPie() {
+        gAnimatedPieView = findViewById(R.id.goalPieView);
+
+        //configure the pie display and elements
+        AnimatedPieViewConfig config = new AnimatedPieViewConfig();
+        config.setStartAngle(-90);
+        config.setDuration(1200);
+        config.setDrawText(false);
+        config.setStrokeWidth(20);
+        config.setPieRadiusScale(.8f);
+
+        /* Text Options [disabled]
+        config.setTextMarginLine(80);
+        config.setTextSize(100);
+        */
+
+        //todo remove test values
+        savingsTotal = 20;
+        savingsGoal = 25;
+        //todo remove test values
+
+        //calculate the pie slices
+        int totalSum = savingsTotal + needsTotal + wantsTotal;
+        final float savings = (float) savingsTotal / savingsGoal;
+
+        config.addData(new SimplePieInfo(savings, 0xFFffffff, "Achieved"), false)
+                .addData(new SimplePieInfo(1 - savings, 0xff1e88e5, "Remaining"), false);
+
+        //add on touch listener
+        config.setOnPieSelectListener(new OnPieSelectListener<IPieInfo>() {
+            @Override
+            public void onSelectPie(@NonNull IPieInfo pieInfo, boolean isScaleUp) {
+                if (isScaleUp) {
+                    //todo call method that opens savings goal
+                    //todo remove Toast
+                    Toast.makeText(MainActivity.this, pieInfo.getDesc() + ": " + (int) savings + "%", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+        //start the pie chart
+        gAnimatedPieView.applyConfig(config);
+        gAnimatedPieView.start();
+    }
+
     //todo method that calculates evolution month over month or month over average and updates TextView
 
+    //todo method or activity to set and view savings goal
+
     //todo method that changes screen over to another activity
+    public void savingsClick(View view) {
+        //todo call method that drills down to selected pie segment
+        //todo remove Toast
+        Toast.makeText(MainActivity.this, "go to savings", Toast.LENGTH_SHORT).show();
+    }
 
+    public void needsClick(View view) {
+        //todo call method that drills down to selected pie segment
+        //todo remove Toast
+        Toast.makeText(MainActivity.this, "go to needs", Toast.LENGTH_SHORT).show();
+    }
 
+    public void wantsClick(View view) {
+        //todo call method that drills down to selected pie segment
+        //todo remove Toast
+        Toast.makeText(MainActivity.this, "go to wants", Toast.LENGTH_SHORT).show();
+    }
 
 }

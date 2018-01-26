@@ -24,13 +24,14 @@
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
         android:clickable="true"
         android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/plustocheck" />
+        app:srcCompat="@drawable/plustocheck"
+        app:fabSize="auto"/>
 
     <!-- Savings summary -->
     <RelativeLayout
@@ -45,7 +46,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/animatedPieView">
+        app:layout_constraintTop_toBottomOf="@+id/animatedPieView"
+        android:onClick="savingsClick">
 
         <TextView
             android:id="@+id/savingsText"
@@ -67,12 +69,63 @@
             android:layout_alignBottom="@id/savingsText"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
+            android:layout_marginBottom="4dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-condensed"
             android:text="@string/savingsDefaultValue"
             android:textColor="#fff"
             android:textSize="32sp" />
+
+        <TextView
+            android:id="@+id/savingsIncreaseText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@id/savingsValue"
+            android:text="@string/savingsIncreaseDefaultValue"
+            android:textColor="#fff"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/savingsEvolution"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_above="@id/savingsIncreaseText"
+            android:layout_alignEnd="@id/savingsIncreaseText"
+            android:layout_alignStart="@id/savingsIncreaseText"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/savings_evolution_arrow"
+            android:src="@drawable/up_arrow" />
+
+        <com.razerdp.widget.animatedpieview.AnimatedPieView
+            android:id="@+id/goalPieView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            tools:background="@color/colorAccent" />
+
+        <TextView
+            android:id="@+id/goalText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/goalDefaultValue"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_alignEnd="@id/goalPieView"
+            android:layout_alignStart="@id/goalPieView"
+            android:layout_alignTop="@id/goalPieView"
+            android:layout_alignBottom="@id/goalPieView"/>
+
     </RelativeLayout>
 
     <!-- Needs summary -->
@@ -87,7 +140,8 @@
         app:layout_constraintBottom_toBottomOf="@id/wantsLayout"
         app:layout_constraintEnd_toStartOf="@+id/wantsLayout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/savingsLayout">
+        app:layout_constraintTop_toBottomOf="@id/savingsLayout"
+        android:onClick="needsClick">
 
         <TextView
             android:id="@+id/needsText"
@@ -109,12 +163,24 @@
             android:layout_alignBottom="@id/needsText"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
+            android:layout_marginBottom="4dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-condensed"
             android:text="@string/needsDefaultValue"
             android:textColor="#fff"
             android:textSize="32sp" />
+
+        <ImageView
+            android:id="@+id/needsEvolution"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/needs_evolution_arrow"
+            android:src="@drawable/up_arrow" />
     </RelativeLayout>
 
     <!-- Wants summary -->
@@ -130,7 +196,8 @@
         app:layout_constraintBottom_toTopOf="@id/floatingActionButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/needsLayout"
-        app:layout_constraintTop_toBottomOf="@+id/savingsLayout">
+        app:layout_constraintTop_toBottomOf="@+id/savingsLayout"
+        android:onClick="wantsClick">
 
         <TextView
             android:id="@+id/wantsText"
@@ -152,26 +219,38 @@
             android:layout_alignBottom="@id/wantsText"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
+            android:layout_marginBottom="4dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-condensed"
             android:text="@string/wantsDefaultValue"
             android:textColor="#fff"
             android:textSize="32sp" />
+
+        <ImageView
+            android:id="@+id/wantsEvolution"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/wants_evolution_arrow"
+            android:src="@drawable/up_arrow" />
     </RelativeLayout>
 
     <TextView
         android:id="@+id/ratioText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/ratioText"
+        android:textColor="#000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/animatedPieView"
         app:layout_constraintLeft_toLeftOf="@id/animatedPieView"
         app:layout_constraintRight_toRightOf="@id/animatedPieView"
-        app:layout_constraintTop_toTopOf="@id/animatedPieView"
-        app:layout_constraintBottom_toBottomOf="@id/animatedPieView"
-        android:textColor="#000"
-        android:text="@string/ratioText"
-        android:gravity="center"
-        android:textSize="24sp"
-        android:textStyle="bold"/>
+        app:layout_constraintTop_toTopOf="@id/animatedPieView" />
 
 </android.support.constraint.ConstraintLayout>

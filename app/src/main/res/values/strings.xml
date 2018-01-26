@@ -6,5 +6,10 @@
     <string name="needsDefaultValue">20,919 USD</string>
     <string name="wantsText">Wants</string>
     <string name="wantsDefaultValue">20,199 USD</string>
-    <string name="ratioText">Current Ratio: 20/50/30</string>
+    <string name="ratioText">Current\nRatio:\n20/50/30</string>
+    <string name="goalDefaultValue">99%</string>
+    <string name="savingsIncreaseDefaultValue">+199.9%</string>
+    <string name="savings_evolution_arrow">Savings evolution arrow</string>
+    <string name="needs_evolution_arrow">needs evolution arrow</string>
+    <string name="wants_evolution_arrow">wants evolution arrow</string>
 </resources>
