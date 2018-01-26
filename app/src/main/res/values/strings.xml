@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Expense-Tracker</string>
+    <string name="savingsText">Savings</string>
+    <string name="savingsDefaultValue">20,991 USD |</string>
+    <string name="needsText">Needs</string>
+    <string name="needsDefaultValue">20,919 USD</string>
+    <string name="wantsText">Wants</string>
+    <string name="wantsDefaultValue">20,199 USD</string>
+    <string name="ratioText">Current Ratio: 20/50/30</string>
 </resources>
