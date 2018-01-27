@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //todo get values from CSV
+        readCSV();
 
         //launch the pie charts
         setPie();
@@ -169,6 +170,11 @@ public class MainActivity extends AppCompatActivity {
         //start the pie chart
         gAnimatedPieView.applyConfig(config);
         gAnimatedPieView.start();
+    }
+
+    //function that reads CSV file with entries
+    public void readCSV(){
+        //read that damned csv!
     }
 
     //todo method that calculates evolution month over month or month over average and updates TextView

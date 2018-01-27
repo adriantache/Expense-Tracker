@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Expense-Tracker</string>
+    <string name="app_name">Expense Tracker</string>
     <string name="savingsText">Savings</string>
     <string name="savingsDefaultValue">20,991 USD |</string>
     <string name="needsText">Needs</string>
