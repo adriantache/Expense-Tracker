@@ -1,5 +1,6 @@
 package com.adriantache.expense_tracker;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.Animatable;
@@ -52,19 +53,28 @@ public class MainActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //animate button icon
+                /*//animate button icon
                 Drawable drawable;
                 if (!fabClicked) {
                     drawable = getDrawable(R.drawable.plustocheck);
                     floatingActionButton.setImageDrawable(drawable);
                     floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#7CB342")));
                     fabClicked = true;
+
                 } else {
                     drawable = getDrawable(R.drawable.checktoplus);
                     floatingActionButton.setImageDrawable(drawable);
                     floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#EC407A")));
                     fabClicked = false;
                 }
+                if (drawable instanceof Animatable) ((Animatable) drawable).start();*/
+
+                Intent intent = new Intent("android.intent.action.AddAmount");
+                startActivity(intent);
+                
+                Drawable drawable;
+                drawable = getDrawable(R.drawable.checktoplus);
+                floatingActionButton.setImageDrawable(drawable);
                 if (drawable instanceof Animatable) ((Animatable) drawable).start();
 
                 //todo add new intent here to move to next activity
@@ -85,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
         config.setDrawText(false);
         config.setStrokeWidth(100);
         config.setPieRadiusScale(0.8f);
+        config.setSplitAngle(3);
 
         /* Text Options [disabled]
         config.setTextMarginLine(80);
@@ -114,7 +125,11 @@ public class MainActivity extends AppCompatActivity {
                 if (isScaleUp) {
                     //todo call method that drills down to selected pie segment
                     //todo remove Toast
-                    Toast.makeText(MainActivity.this, pieInfo.getDesc(), Toast.LENGTH_SHORT).show();
+                    if (pieInfo.getDesc() == "Savings") {
+                        Toast.makeText(MainActivity.this, "TEST", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(MainActivity.this, pieInfo.getDesc(), Toast.LENGTH_SHORT).show();
+                    }
                 }
 
             }
@@ -172,8 +187,8 @@ public class MainActivity extends AppCompatActivity {
         gAnimatedPieView.start();
     }
 
-    //function that reads CSV file with entries
-    public void readCSV(){
+    //todo function that reads CSV file with entries
+    public void readCSV() {
         //read that damned csv!
     }
 
