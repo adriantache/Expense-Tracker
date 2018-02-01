@@ -1,5 +1,6 @@
 package com.adriantache.expense_tracker;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -70,17 +71,29 @@ public class MainActivity extends AppCompatActivity {
                 if (drawable instanceof Animatable) ((Animatable) drawable).start();*/
 
                 Intent intent = new Intent("android.intent.action.AddAmount");
-                startActivity(intent);
-                
-                Drawable drawable;
-                drawable = getDrawable(R.drawable.checktoplus);
-                floatingActionButton.setImageDrawable(drawable);
-                if (drawable instanceof Animatable) ((Animatable) drawable).start();
+                startActivityForResult(intent,1);
+
+
 
                 //todo add new intent here to move to next activity
                 //todo keep FAB settings in new activity
             }
         });
+
+    }
+
+    //handle returning to the main activity
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == Activity.RESULT_CANCELED) {}
+        else if (resultCode == 1) {
+        Drawable drawable;
+        //drawable = floatingActionButton.getDrawable();
+        drawable = getDrawable(R.drawable.checktoplus);
+        floatingActionButton.setImageDrawable(drawable);
+        if (drawable instanceof Animatable) ((Animatable) drawable).start();}
 
     }
 

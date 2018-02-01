@@ -13,21 +13,18 @@ import android.view.View;
 public class AddAmount extends AppCompatActivity {
 
     FloatingActionButton floatingActionButton;
-    boolean fabClicked = false;
+    boolean fabClicked = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_amount);
 
-
         floatingActionButton = findViewById(R.id.floatingActionButton);
         Drawable drawable;
         drawable = getDrawable(R.drawable.plustocheck);
+        floatingActionButton.setImageDrawable(drawable);
         if (drawable instanceof Animatable) ((Animatable) drawable).start();
-
-
-
 
         //onClickListener for the FAB
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
